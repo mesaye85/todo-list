@@ -1,4 +1,3 @@
-
 function addToDo(){
     var text=$("#txt-task").val();
     var todo={
@@ -14,10 +13,16 @@ function addToDo(){
     }
     $("#txt-task").focus();
 }
+
 function displayToDo(todo){
-    var li=`<li>${todo}<button> Done </button></li>`
+    var li=`<li>${todo}<button class="done-btn"> Done </button></li>`
     $("#pending-list").append(li);
     
+    $(".done-btn").click(function(){
+        var todoText = $(this).parent().text();
+        $(this).parent().remove();
+        $("#done-list").append(`<li>${todoText}</li>`);
+    });
 }
 
 function init(){
@@ -29,4 +34,5 @@ function init(){
         addToDo();
     });
 }
+
 window.onload=init;
